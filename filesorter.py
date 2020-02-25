@@ -47,7 +47,7 @@ directory_names = {
     "Image_files": [".bmp", ".tif", ".jpg", ".gif", ".png", ".jpeg", ".jfif", ".xcf", ".odg", ".vsdx", ".dds", ".heic", ".psd", ".pspimage", ".tga", ".thm", "tiff", ".yuv"],
     "Vector_files": [".eps", ".ai", ".svg"],
     "Camera_Raw_Images": [".dng", ".cr2", ".nef", ".arw"],
-    "Document_files": [".pdf", ".indd", ".qxp", ".pub", ".pptx", ".doc", ".docx", ".odt", ".pages", ".rtf", ".ppy", ".pct   "],
+    "Document_files": [".pdf", ".indd", ".qxp", ".pub", ".pptx", ".doc", ".docx", ".odt", ".pages", ".rtf", ".ppy", ".pct"],
     "Spreadsheet_files": [".xlsx", ".ods", ".numbers", ".xlr", ".xls"],
     "Database_files": [".db", ".accdb", ".nsf", ".fp7", "this string will never be used", ".dbf", ".mdb", ".pdb", ".sql"],
     "App_files": [".exe", ".app", ".vb", ".scr", ".msi", ".jar", ".ipa", ".apk", ".cgi", ".com", ".gadget", ".wsf", ".deb", ".rpm", ".pkg"],
