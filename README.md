@@ -19,4 +19,5 @@ Specifies which extensions go to the specified directory. Works only in combinat
 Specifies which extensions go to the specified directory. Works only in combination with -d
 # Example
 ./file-sorter.sh --debug -d Cool_Text_Files -e .txt
+
 Runs the program in debug mode, place all the .txt files in the directory Cool_Text_Files
