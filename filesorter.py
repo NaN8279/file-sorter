@@ -322,6 +322,7 @@ for filename in os.listdir(currentPath):
                 if extension in ext:
                     sortFile(filename, dirname, currentPath + "/" + filename)
                     break
+            continue
         #For each key in directory_names, check if the file must be sorted to that key
         for dirname, ext in directory_names.items():
             #If the extension from the file is in the current array, sort the file
@@ -335,7 +336,7 @@ if args.readscript:
     rs.close()
 #End the program
 print("", end="\n")
-#Special thanks for cronos74 for recommend argparse
+#Special thanks for Reddit user cronos74 for recommend argparse
 #Thank you for reading this code
 print("Thank you for using file-sorter!")
 print("File sorting done!")
