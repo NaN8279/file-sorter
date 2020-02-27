@@ -25,3 +25,8 @@ Generates a script file
 ./file-sorter.sh --debug -d Cool_Text_Files -e .txt .docx
 
 Runs the program in debug mode, place all the .txt and .docx files in the directory Cool_Text_Files
+# Order of sorting
+The program has an order of how it sorts.
+First, it looks at the -d and -e attributes, if they are given.
+Then, it looks in the json script, if given.
+Finaly, it looks in the programmed dictionary
