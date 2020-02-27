@@ -141,9 +141,9 @@ args = parser.parse_args()
 #Get the current directory path
 currentPath = os.path.dirname(os.path.realpath(__file__))
 
-#Get the total number of files in this dir, except the script files
+#Get the total number of files in this dir, except the script file
 filesInDir = len([f for f in os.listdir(currentPath)
-                if os.path.isfile(os.path.join(currentPath, f))]) - 3
+                if os.path.isfile(os.path.join(currentPath, f))])
 
 #Define previousPercent variable, for the progress bar
 previousPercent = 0
@@ -237,15 +237,13 @@ def timestamp():
 #Define sorting function
 def sortFile(filename, sortDir, filePath):
     #Import needed variables
-    global temporarylog, currentPath, currentFile, filesInDir
+    global temporarylog, currentPath, filesInDir
     #Check if the file is a directory or not if it is, return a warning if debug mode is on
     if not Path(filePath).is_file():
         temporarylog = temporarylog + "[%s]Aborted the sorting of file %s, because it's a dir\n" % (timestamp(),filename)
         if args.debug:
             print("Aborted the sorting of file %s, because it's a dir" % filename)
         return 2 #Returns 2
-    #Update currentFile
-    currentFile = currentFile + 1
     #Update temporary log
     temporarylog = temporarylog + "[%s]The file is: %s\n" % (timestamp(),filename)
     #Print the filename if debugging is enabled or secure is enabled
@@ -281,9 +279,6 @@ def sortFile(filename, sortDir, filePath):
     #Print the new path if debugging is enabled
     if args.debug:
         print("Moving file to: %s" % movePath)
-    #Print the percent if debugging and secure are turned of
-    if not args.debug and not args.secure:
-        printPercent(currentFile, filesInDir)
     return 0
 
 
@@ -306,6 +301,13 @@ if not args.debug and not args.secure:
     print(end='\r')
 #Start the sorting loop
 for filename in os.listdir(currentPath):
+    #Update currentFile if the file is not a dir
+    if Path(filename).is_file():
+        currentFile = currentFile + 1
+    #Print the percent if debugging and secure are turned of
+    if Path(filename).is_file():
+        if not args.debug and not args.secure:
+            printPercent(currentFile, filesInDir)
     #Run if the file is not the script
     if filename not in __file__:
         #Get the extension of the file
@@ -315,7 +317,7 @@ for filename in os.listdir(currentPath):
             sortFile(filename, extraDir, currentPath + "/" + filename)
             continue
         #If there is a readscript defined, look in the readscript for this extension and eventually move the file
-        if extraDict:
+        try:
             #For each key in extraDict, check if the file must be sorted to that key
             for dirname, ext in extraDict.items():
                 #If the extension from the file is in the current array, sort the file
@@ -323,6 +325,8 @@ for filename in os.listdir(currentPath):
                     sortFile(filename, dirname, currentPath + "/" + filename)
                     break
             continue
+        except NameError:
+            temporarylog = temporarylog + "[%s]Error: extraDict is not defined!\n" % (timestamp())
         #For each key in directory_names, check if the file must be sorted to that key
         for dirname, ext in directory_names.items():
             #If the extension from the file is in the current array, sort the file
